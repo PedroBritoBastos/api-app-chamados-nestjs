@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { UsersModule } from './modules/users/users.module.js';
+import { UsersController } from './modules/users/users.controller.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -12,8 +14,9 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       appSecret: 'YOUR_APP_SECRET',
       serviceId: 'api-app-chamados-nestjs',
     }),
+    UsersModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, UsersController],
   providers: [AppService],
 })
 export class AppModule {}
